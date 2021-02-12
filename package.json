@@ -1,0 +1,25 @@
+{
+  "name": "event-scheduler",
+  "version": "0.0.1",
+  "description": "A job scheduler that emits events rather than processes the jobs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "build": "tsc"
+  },
+  "keywords": [
+    "job",
+    "scheduler",
+    "event"
+  ],
+  "author": "Wiebo Troost (BinaryOps.ca)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/expect.js": "^0.3.29",
+    "@types/mocha": "^8.2.0",
+    "expect.js": "^0.3.1",
+    "mocha": "^8.3.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  }
+}

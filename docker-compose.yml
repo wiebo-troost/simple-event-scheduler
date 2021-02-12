@@ -1,0 +1,30 @@
+# Run tests in Docker `docker-compose up` on Node.js v14
+# - install node deps first `docker-compose run agenda npm install`
+version: "3"
+services:
+  agenda:
+    image: node:14
+    command: npm install
+    working_dir: /home/wtroost/code/agenda
+    volumes:
+      - ./:/home/wtroost/code/agenda
+    environment:
+      - SQLDB_HOST=db
+    links:
+      - db
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+    ports: 
+      - 3306:3306  
+    volumes:
+      - "./create_db.sql:/docker-entrypoint-initdb.d/3.sql"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 7081:8080
