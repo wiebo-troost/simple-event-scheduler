@@ -1,6 +1,6 @@
 
 export interface Job {
-    id: number;
+    id: number | null;
     name: string;
     active?: boolean;
     crontab?: string;
@@ -9,10 +9,10 @@ export interface Job {
     lastRunAt?: Date;
     startDate?: Date | number | null;
     endDate?: Date | number | null;
-    lastModifiedBy?: string;
   }
   
   export abstract class DBAdapter {
     public abstract createJob(job: Job): Promise<Job>;
+    public abstract purgeJobs(query: any): Promise<number>;
   }
   
