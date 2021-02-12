@@ -7,11 +7,11 @@ use agenda_test;
  CREATE TABLE `job` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NULL,
-  `active` int NULL,
-  `crontab` varchar(255) NULL,
+  `active` int NOT NULL,
+  `cronexp` varchar(255) NULL,
   `nextRunAt` datetime NULL,
   `intervalSeconds` int NULL,
-  `lastRunAt` datetime NULL,
+  `lastRunTime`bigint NOT NULL,
   `startDate` datetime NULL,
   `endDate` datetime NULL,
   PRIMARY KEY (id)

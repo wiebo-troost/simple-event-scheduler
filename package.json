@@ -15,8 +15,10 @@
   "author": "Wiebo Troost (BinaryOps.ca)",
   "license": "MIT",
   "devDependencies": {
+    "@types/debug": "^4.1.5",
     "@types/expect.js": "^0.3.29",
     "@types/mocha": "^8.2.0",
+    "delay": "^5.0.0",
     "expect.js": "^0.3.1",
     "mocha": "^8.3.0",
     "ts-node": "^9.1.1",
@@ -24,6 +26,7 @@
   },
   "dependencies": {
     "cron-parser": "^3.1.0",
+    "debug": "^4.3.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0"
   }

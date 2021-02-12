@@ -1,4 +1,4 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { DataTypes, Model, Op, Sequelize } from "sequelize";
 import { DBAdapter, Job } from ".";
 
 class JobsModel extends Model<Job> implements Job {
@@ -8,12 +8,10 @@ class JobsModel extends Model<Job> implements Job {
     crontab?: string;
     nextRunAt?: Date | null;
     intervalSeconds?: string;
-    lastRunAt?: Date;
+    lastRunTime?: number;
     startDate?: Date | number | null;
     endDate?: Date | number | null;
-  
   }
-
 
 class SequelizeAdapter extends DBAdapter{
 
@@ -30,46 +28,7 @@ class SequelizeAdapter extends DBAdapter{
         opts.tablename = opts.tablename || 'job';
         opts.modelname = opts.modelname || 'JobsModel';
         this.options = opts;
-        // this.jobsModel = this.sequelize.define(
-        //     opts.modelname,
-        //     {
-        //       // Model attributes are defined here
-        //       id: {
-        //         type: DataTypes.INTEGER,
-        //         allowNull: false,
-        //         primaryKey: true,
-        //         autoIncrement: true
-        //       },
-        //       name: {
-        //         type: DataTypes.STRING,
-        //       },
-        //       active: {
-        //         type: DataTypes.SMALLINT,
-        //       },
-        //       crontab: {
-        //         type: DataTypes.STRING,
-        //       },
-        //       nextRunAt: {
-        //         type: DataTypes.DATE,
-        //       },
-        //       intervalSeconds: {
-        //         type: DataTypes.INTEGER,
-        //       },
-        //       lastRunAt: {
-        //         type: DataTypes.DATE,
-        //       },
-        //       startDate: {
-        //         type: DataTypes.DATE,
-        //       },
-        //       endDate: {
-        //         type: DataTypes.DATE,
-        //       }
-        //     },
-        //     {
-        //       tableName: opts.tablename,
-        //       timestamps: false
-        //     }
-        //   );
+        
         JobsModel.init(
                 {
                   // Model attributes are defined here
@@ -83,9 +42,10 @@ class SequelizeAdapter extends DBAdapter{
                     type: DataTypes.STRING,
                   },
                   active: {
-                    type: DataTypes.SMALLINT,
+                    type: DataTypes.BOOLEAN,
+                    allowNull: false,
                   },
-                  crontab: {
+                  cronexp: {
                     type: DataTypes.STRING,
                   },
                   nextRunAt: {
@@ -94,8 +54,9 @@ class SequelizeAdapter extends DBAdapter{
                   intervalSeconds: {
                     type: DataTypes.INTEGER,
                   },
-                  lastRunAt: {
-                    type: DataTypes.DATE,
+                  lastRunTime: {
+                    type: DataTypes.INTEGER,
+                    allowNull: false,
                   },
                   startDate: {
                     type: DataTypes.DATE,
@@ -118,8 +79,9 @@ class SequelizeAdapter extends DBAdapter{
             job.id = null;
         }
         return JobsModel.create(job)
-        .then((jobModel: any) => {
-            const j:Job = jobModel.dataValues;
+        .then((jobModel) => {
+            // console.log("toString", jobModel.toJSON());
+            const j:Job = jobModel.toJSON() as Job;
             return j;
         })
     }
@@ -131,6 +93,52 @@ class SequelizeAdapter extends DBAdapter{
         });
     } 
 
+    public loadJobs(loadIntervalSeconds:number):Promise<Job[]>{
+
+      const now = new Date();
+      const runtimeCutoff = new Date(now.getTime() + (loadIntervalSeconds * 1000));
+
+      const qry:any = {
+        where:{
+          active:true,
+          nextRunAt: {[Op.lte]: runtimeCutoff},
+          startDate: {[Op.lte]: now},
+          [Op.or]: [
+            {endDate: {[Op.gte]: now}},
+            {endDate: {[Op.is]: null}},
+          ]
+        }
+      }
+
+      return JobsModel.findAll(qry)
+      .then(models => {
+        return models.map(m => m.toJSON() as Job)
+      });
+    }
+
+    public claimJobRun(job: Job): Promise<Job | null>{
+      //update the job with the new data, using the lastRuntime
+      //in the query, if the updateCount == 1, means this server claimed
+      // the run, if updateCount == 0 another scheduler server has it.
+      const lastRunTime = job.lastRunTime;
+      job.lastRunTime = (new Date()).getTime();
+
+      return JobsModel.update(job,
+        {
+          where:{
+            id: job.id,
+            lastRunTime: lastRunTime
+          }
+        }
+        )
+        .then(result => {
+          let ret: Job | null = null;
+          if (result[0] == 1) {
+            ret = job;
+          }
+          return ret;
+        });
+    }
 }
 
 export { SequelizeAdapter };
