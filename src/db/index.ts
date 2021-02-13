@@ -16,8 +16,19 @@ export interface Job {
 
   export abstract class DBAdapter {
 
+    /**
+     * Insert a new job into the database
+     * @param job {Job}
+     */
     public abstract createJob(job: Job): Promise<Job>;
 
+    /**
+     * Delete jobs from the database that match the query. This method is not used
+     * by the scheduler, it is available as a convenience method for the user.  
+     * @param query The query that selects the job records to be deleted. This 
+     * argument must be applicable to sequelize, it is applied to the `where` property 
+     * of the options object.
+     */
     public abstract purgeJobs(query: any): Promise<number>;
     
     public abstract loadJobs(loadIntervalSeconds:number): Promise<Job[]>;

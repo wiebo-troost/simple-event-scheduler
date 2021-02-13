@@ -12,7 +12,8 @@ export interface JobOptions {
 }
 
 /**
- * @class SimpleEventScheduler
+ *  SimpleEventScheduler is an event emitter that
+ *  creates recurring and one-time jobs
  */
 class SimpleEventScheduler extends EventEmitter {
 

@@ -82,10 +82,6 @@ class SequelizeAdapter extends DBAdapter{
         );
     }
 
-    /**
-     * Insert a new job into the database
-     * @param job {Job}
-     */
     public createJob(job: Job): Promise<Job> {
         // return Promise.resolve(job);
         if (job.id == -1){
@@ -99,13 +95,7 @@ class SequelizeAdapter extends DBAdapter{
         })
     }
 
-    /**
-     * Delete jobs from the database that match the query. This method is not used
-     * by the scheduler, it is available as a convenience method for the user.  
-     * @param query The query that selects the job records to be deleted. This 
-     * argument must be applicable to sequelize, it is applied to the `where` property 
-     * of the options object.
-     */
+    
     public purgeJobs(query: any): Promise<number> {
         return JobsModel.destroy({where: query})
         .then(result => {

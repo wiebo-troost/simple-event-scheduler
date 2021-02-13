@@ -7,7 +7,8 @@
     "test": "test",
     "build": "tsc",
     "predocs": "npm run build",
-    "docs": "jsdoc --configure .jsdoc.json --verbose ./dist"
+    "docs": "jsdoc --configure .jsdoc.json --verbose ./dist",
+    "tsdoc":"typedoc --out tsdocs ./src"
   },
   "keywords": [
     "job",
@@ -26,6 +27,7 @@
     "jsdoc-template": "https://github.com/braintree/jsdoc-template",
     "mocha": "^8.3.0",
     "ts-node": "^9.1.1",
+    "typedoc": "^0.20.24",
     "typescript": "^4.1.5"
   },
   "dependencies": {
