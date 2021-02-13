@@ -1,6 +1,10 @@
 import { DataTypes, Model, Op, Sequelize } from "sequelize";
 import { DBAdapter, Job } from ".";
 
+/**
+ * @class JobsModel
+ * Sequelize model for the jobs table
+ */
 class JobsModel extends Model<Job> implements Job {
     id!: number | null;
     name!: string;
@@ -13,11 +17,16 @@ class JobsModel extends Model<Job> implements Job {
     endDate?: Date | number | null;
   }
 
+  /**
+   * @class SequelizeAdapter
+   * @extends DBAdapter
+   * Implements all the functions needed for the scheduler to maintain
+   * and persist the job records.
+   */
 class SequelizeAdapter extends DBAdapter{
 
     private options: any;
     
-
     constructor(private sequelize: Sequelize, options?:any){
         super();
         const opts = options || {}
@@ -73,6 +82,10 @@ class SequelizeAdapter extends DBAdapter{
         );
     }
 
+    /**
+     * Insert a new job into the database
+     * @param job {Job}
+     */
     public createJob(job: Job): Promise<Job> {
         // return Promise.resolve(job);
         if (job.id == -1){
@@ -86,6 +99,13 @@ class SequelizeAdapter extends DBAdapter{
         })
     }
 
+    /**
+     * Delete jobs from the database that match the query. This method is not used
+     * by the scheduler, it is available as a convenience method for the user.  
+     * @param query The query that selects the job records to be deleted. This 
+     * argument must be applicable to sequelize, it is applied to the `where` property 
+     * of the options object.
+     */
     public purgeJobs(query: any): Promise<number> {
         return JobsModel.destroy({where: query})
         .then(result => {
@@ -93,6 +113,10 @@ class SequelizeAdapter extends DBAdapter{
         });
     } 
 
+    /**
+     * Loads the jobs from the database that need to be emitted in the given interval.
+     * @param loadIntervalSeconds {number} The number of seconds until the next call to this method.
+     */
     public loadJobs(loadIntervalSeconds:number):Promise<Job[]>{
 
       const now = new Date();
@@ -116,6 +140,16 @@ class SequelizeAdapter extends DBAdapter{
       });
     }
 
+    /**
+     * This method attempts to update the lastRunTime of the Job to the current timestamp
+     * using the currently known value in the where clause. If no other server running the scheduler
+     * has updated the record already, then this update will succeed and the updated Job is returned in the promise.
+     * In that case the scheduler will emit an event for the Job.
+     * However if the update fails, then no events will be emitted for this job until it is reloaded in the next 
+     * database load interval.
+     * @param job {Job} 
+     * @return {Promise<Job | null>}
+     */
     public claimJobRun(job: Job): Promise<Job | null>{
       //update the job with the new data, using the lastRuntime
       //in the query, if the updateCount == 1, means this server claimed

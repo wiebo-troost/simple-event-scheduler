@@ -1,7 +1,7 @@
 import "mocha";
 import expect from "expect.js";
 import delay from "delay";
-import { SimpleScheduler } from "../src/simple-scheduler";
+import { SimpleEventScheduler } from "../src/simple-event-scheduler";
 import { DBAdapter, Job } from "../src/db";
 import { SequelizeAdapter } from "../src/db/sequelize-adapter";
 import { Sequelize } from "sequelize";
@@ -22,13 +22,13 @@ describe("Create the scheduler", () => {
   });
 
   let adapter: DBAdapter;
-  let scheduler: SimpleScheduler;
+  let scheduler: SimpleEventScheduler;
   before(() => {
     return sequelize
       .authenticate()
       .then(() => {
         adapter = new SequelizeAdapter(sequelize);
-        scheduler = new SimpleScheduler(adapter);
+        scheduler = new SimpleEventScheduler(adapter);
       })
       .catch((err) => {
         console.error("Unable to connect to the database:", err);

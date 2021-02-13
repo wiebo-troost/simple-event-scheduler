@@ -11,7 +11,10 @@ export interface JobOptions {
     endDate?:Date
 }
 
-class SimpleScheduler extends EventEmitter {
+/**
+ * @class SimpleEventScheduler
+ */
+class SimpleEventScheduler extends EventEmitter {
 
     private _startDate: Date;
     private _running:boolean = false;
@@ -20,6 +23,10 @@ class SimpleScheduler extends EventEmitter {
 
     private currentJobs: Job[];
 
+    /**
+   * Constructs a new Scheduler object.
+   * @param adapter {DBAdapter} The database adapter to be used for persisting the schedule.
+   */
     constructor(private adapter: DBAdapter){
         super();
         this.currentJobs = [];
@@ -54,6 +61,12 @@ class SimpleScheduler extends EventEmitter {
         return j
     }
 
+    /**
+     * 
+     * @param name The name of the new bjo
+     * @param cronexp The cron expression that governs when it runs
+     * @param options {JobOptions} optional values to be applied to the new Job
+     */
     createRecurringJob(name:string, cronexp: string, options: JobOptions = {}):Promise<Job>{
         
         if (!cronexp) {
@@ -159,7 +172,7 @@ class SimpleScheduler extends EventEmitter {
         })
     }
 
-    processOneJob(job:Job){
+    private processOneJob(job:Job){
 
         this.calcNextRun(job);
         //debug(`job.nextRun after ${job.nextRunAt}`)
@@ -184,13 +197,7 @@ class SimpleScheduler extends EventEmitter {
                 //we'll load it again on the next db load.
             }
         });
-
-        // job.lastRunTime = now
-        // job.nextRunAt <= from cron.next();
-
-        //then when update count ==1
-        //emit event
-        //otherwise remove from loaded jobs in memory.
+        
     }
 
     private needToLoadJobs(): boolean {
@@ -211,7 +218,6 @@ class SimpleScheduler extends EventEmitter {
         return;
     }
 
-
 }
 
-export { SimpleScheduler };
+export { SimpleEventScheduler };

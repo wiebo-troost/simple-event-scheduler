@@ -1,0 +1,23 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc"]
+    },
+    "source": {
+        "include": ["src", "package.json", "README.md"],
+        "includePattern": ".js$",
+        "excludePattern": "(node_modules/|docs)"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ],
+    "templates": {
+        "referenceTitle": "Simple Microservice Event Scheduler"
+    },
+    "opts": {
+        "destination": "./docs/",
+        "encoding": "utf8",
+        "recurse": true,
+        "template": "./node_modules/jsdoc-template"
+    }
+}
