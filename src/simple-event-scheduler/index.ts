@@ -3,6 +3,7 @@ import createDebug from "debug";
 import delay from "delay";
 import { EventEmitter } from "events";
 import { DBAdapter, Job } from "../db";
+import { SequelizeAdapter } from "../db/sequelize-adapter";
 
 const debug = createDebug('simple-scheduler')
 
@@ -221,4 +222,4 @@ class SimpleEventScheduler extends EventEmitter {
 
 }
 
-export { SimpleEventScheduler };
+export { SimpleEventScheduler, SequelizeAdapter, DBAdapter };

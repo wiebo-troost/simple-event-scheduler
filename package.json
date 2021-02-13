@@ -1,14 +1,14 @@
 {
-  "name": "event-scheduler",
+  "name": "simple-event-scheduler",
   "version": "0.0.1",
   "description": "A job scheduler that emits events rather than processes the jobs",
-  "main": "index.js",
+  "main": "dist/simple-event-scheduler/index.js",
+  "types": "dist/simple-event-scheduler/index.d.ts",
   "scripts": {
     "test": "test",
     "build": "tsc",
     "predocs": "npm run build",
-    "docs": "jsdoc --configure .jsdoc.json --verbose ./dist",
-    "tsdoc":"typedoc --out tsdocs ./src"
+    "tsdoc": "typedoc --out tsdocs ./src"
   },
   "keywords": [
     "job",
@@ -21,11 +21,10 @@
     "@types/debug": "^4.1.5",
     "@types/expect.js": "^0.3.29",
     "@types/mocha": "^8.2.0",
-    "delay": "^5.0.0",
     "expect.js": "^0.3.1",
-    "jsdoc": "3.6.6",
-    "jsdoc-template": "https://github.com/braintree/jsdoc-template",
     "mocha": "^8.3.0",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.5.0",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.24",
     "typescript": "^4.1.5"
@@ -33,7 +32,6 @@
   "dependencies": {
     "cron-parser": "^3.1.0",
     "debug": "^4.3.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.5.0"
+    "delay": "^5.0.0"
   }
 }

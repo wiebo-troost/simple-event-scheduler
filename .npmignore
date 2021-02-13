@@ -2,10 +2,16 @@
 .idea
 .jsdoc.json
 .travis.yml
-agenda.svg
 docs
 History.md
 Makefile
 renovate.json
 test
 yarn.lock
+.vscode
+src
+tsdocs
+create_db.sql
+docker-compose.yml
+tsconfig.json
+
