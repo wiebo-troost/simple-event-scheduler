@@ -8,8 +8,15 @@ import { SequelizeAdapter } from "../db/sequelize-adapter";
 const debug = createDebug('simple-scheduler')
 
 export interface JobOptions {
-    startDate?: Date,
-    endDate?:Date
+    startDate?: Date;
+    endDate?:Date;
+    channel?:string;
+}
+
+export interface SchedulerOptions {
+    defaultChannelName?: string;
+    dbLoadIntervalSeconds?: number;
+    emittingChannels?: string[]
 }
 
 /**
@@ -20,7 +27,7 @@ class SimpleEventScheduler extends EventEmitter {
 
     private _startDate: Date;
     private _running:boolean = false;
-    private _dbLoadIntervalSeconds: number = 10;
+    private schedulerOptions: SchedulerOptions;
     private _lastDbLoadTime: number;
 
     private currentJobs: Job[];
@@ -29,11 +36,16 @@ class SimpleEventScheduler extends EventEmitter {
    * Constructs a new Scheduler object.
    * @param adapter {DBAdapter} The database adapter to be used for persisting the schedule.
    */
-    constructor(private adapter: DBAdapter){
+    constructor(private adapter: DBAdapter, options: SchedulerOptions = {}){
         super();
+        this.schedulerOptions = {
+            defaultChannelName: options.defaultChannelName || "jobs",
+            dbLoadIntervalSeconds: options.dbLoadIntervalSeconds || 10,
+            emittingChannels: options.emittingChannels
+        }
         this.currentJobs = [];
         this._startDate = new Date();
-        this._lastDbLoadTime = this._startDate.getTime() - (this._dbLoadIntervalSeconds * 1000) - 1;
+        this._lastDbLoadTime = this._startDate.getTime() - ((this.schedulerOptions.dbLoadIntervalSeconds) as number * 1000) - 1;
     }
 
     private getNextRunFromCron(cronexp: string): Date {
@@ -54,6 +66,7 @@ class SimpleEventScheduler extends EventEmitter {
         const j: Job = {
             id: -1,
             name,
+            channel: options.channel || this.schedulerOptions.defaultChannelName,
             active:true,
             lastRunTime: (new Date()).getTime()
         };
@@ -162,7 +175,7 @@ class SimpleEventScheduler extends EventEmitter {
             if (this.needToLoadJobs()){
                 this._lastDbLoadTime = (new Date()).getTime();
                 debug("Loading Jobs from DB");
-                return this.adapter.loadJobs(this._dbLoadIntervalSeconds)
+                return this.adapter.loadJobs(this.schedulerOptions.dbLoadIntervalSeconds as number)
                 .then(jobs => {
                     this.currentJobs = jobs.sort((a,b) => a.nextRunAt!.getTime() - b.nextRunAt!.getTime())
                 })
@@ -207,7 +220,14 @@ class SimpleEventScheduler extends EventEmitter {
             }
             if (updatedJob) {
                 debug("emitting for job ")
-                this.emit("job", job);
+                let doEmit: boolean = true;
+                if (this.schedulerOptions.emittingChannels && this.schedulerOptions.emittingChannels.length > 0 ) {
+                    const channelIx = this.schedulerOptions.emittingChannels.findIndex(c => c === job.channel);
+                    doEmit = (channelIx >= 0);
+                }
+                if (doEmit) {
+                    this.emit(job.channel as string, job);
+                }
                 //now replace the job in the array
                 this.currentJobs.push(updatedJob); 
                 // debug(`next ${this.currentJobs[0].nextRunAt?.getSeconds()} and now ${(new Date()).getSeconds()}`); 
@@ -224,7 +244,7 @@ class SimpleEventScheduler extends EventEmitter {
         let ret = false;
         const now = (new Date()).getTime();
 
-        return now > (this._lastDbLoadTime + (this._dbLoadIntervalSeconds * 1000));
+        return now > (this._lastDbLoadTime + (this.schedulerOptions.dbLoadIntervalSeconds as number * 1000));
     }
 
     private calcNextRun(job: Job){

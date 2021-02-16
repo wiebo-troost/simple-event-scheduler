@@ -50,6 +50,9 @@ class SequelizeAdapter extends DBAdapter{
                   name: {
                     type: DataTypes.STRING,
                   },
+                  channel: {
+                    type: DataTypes.STRING,
+                  },
                   active: {
                     type: DataTypes.BOOLEAN,
                     allowNull: false,

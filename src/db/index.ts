@@ -5,6 +5,7 @@
 export interface Job {
     id: number | null;
     name: string;
+    channel?: string;
     active?: boolean;
     cronexp?: string;
     nextRunAt?: Date | null;

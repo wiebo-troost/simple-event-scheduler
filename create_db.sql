@@ -6,7 +6,8 @@ use agenda_test;
 
  CREATE TABLE `job` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NULL,
+  `name` varchar(255) NOT NULL,
+  `channel` varchar(255) NOT NULL,
   `active` int NOT NULL,
   `cronexp` varchar(255) NULL,
   `nextRunAt` datetime NULL,

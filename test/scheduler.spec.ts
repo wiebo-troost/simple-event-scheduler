@@ -156,7 +156,7 @@ describe("Create the scheduler", () => {
       });
   });
 
-  xdescribe("process jobs", function () {
+  describe("process jobs", function () {
     // Note the function above, allows access to the mocha context
     // (fat arrow does not)
     // so we can set the test timeout to 10000, and the delay below to 6000.
@@ -171,7 +171,7 @@ describe("Create the scheduler", () => {
       //4 seconds from now.
 
       let events = [];
-      scheduler.on("job", (eventData: any) => {
+      scheduler.on("jobs", (eventData: any) => {
         events.push(eventData);
       });
 
@@ -193,7 +193,7 @@ describe("Create the scheduler", () => {
     it("should emit events for a recurring job", () => {
 
       let events = [];
-      scheduler.on("job", (eventData: any) => {
+      scheduler.on("jobs", (eventData: any) => {
         // console.log(eventData);
         events.push(eventData);
       });
@@ -214,4 +214,74 @@ describe("Create the scheduler", () => {
         });
     });
   });
+
+
+
+  describe("process jobs by channel", function () {
+    // Note the function above, allows access to the mocha context
+    // (fat arrow does not)
+    // so we can set the test timeout to 10000, and the delay below to 6000.
+    this.timeout(30000);
+    afterEach(() => {
+      scheduler.stop();
+    });
+
+    it("should emit an event on a designated channel for a onetime job", () => {
+      const now = new Date();
+      const schedDate = new Date(now.getTime() + 1000 * 3);
+      //4 seconds from now.
+
+      const channelName: string = "testing123"
+
+      let events:any[] = [];
+      scheduler.on(channelName, (eventData: any) => {
+        events.push(eventData);
+      });
+
+      let jobEvents:any[] = [];
+      scheduler.on("jobs", (eventData: any) => {
+        jobEvents.push(eventData);
+      });
+
+      return scheduler
+        .createOnetimeJob("onetime-emit", schedDate, {channel:channelName})
+        .then((job: Job) => {
+          scheduler.start();
+        })
+        .then(() => {
+          return delay(9000);
+        })
+        .then(() => {
+          scheduler.stop();
+          scheduler.removeAllListeners();
+          expect(events.length).to.be(1);
+          expect(jobEvents.length).to.be(0)
+        });
+    });
+
+    // it("should emit events for a recurring job", () => {
+
+    //   let events = [];
+    //   scheduler.on("jobs", (eventData: any) => {
+    //     // console.log(eventData);
+    //     events.push(eventData);
+    //   });
+
+    //   return scheduler
+    //     .createRecurringJob("onetime-emit", "*/5 * * * * *")
+    //     .then((job: Job) => {
+    //       scheduler.start();
+    //     })
+    //     .then(() => {
+    //       return delay(25000);
+    //     })
+    //     .then(() => {
+    //       scheduler.stop();
+    //       scheduler.removeAllListeners();
+    //       expect(events.length).to.be.greaterThan(3);
+    //       expect(events.length).to.be.lessThan(6);
+    //     });
+    // });
+  });
+
 });
