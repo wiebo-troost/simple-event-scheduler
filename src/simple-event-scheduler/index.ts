@@ -50,7 +50,7 @@ class SimpleEventScheduler extends EventEmitter {
         return ret;
     }
 
-    private createDefaultJob(name: string, options:JobOptions):Job {
+    private createDefaultJob(name: string, options:JobOptions):Promise<Job> {
         const j: Job = {
             id: -1,
             name,
@@ -60,7 +60,16 @@ class SimpleEventScheduler extends EventEmitter {
         j.startDate = options.startDate || new Date();
         j.endDate = options.endDate;
 
-        return j
+        return this.adapter.findJobByName(name)
+        .then((val:Job | null) => {
+            if (val) {
+                throw new Error("Duplicate job")
+            }
+            else {
+                return j
+            }
+        })
+
     }
 
     /**
@@ -72,32 +81,41 @@ class SimpleEventScheduler extends EventEmitter {
     createRecurringJob(name:string, cronexp: string, options: JobOptions = {}):Promise<Job>{
         
         if (!cronexp) {
-            throw new Error("crontab is required for creating a recurring job");
+            throw new Error("cron expression is required for creating a recurring job");
         }
 
-        const j = this.createDefaultJob(name, options);
-
+        let nextRunDt: Date;
         try {
             
-            j.cronexp = cronexp;
-            j.nextRunAt = this.getNextRunFromCron(cronexp);
-
+            // j.cronexp = cronexp;
+            nextRunDt = this.getNextRunFromCron(cronexp);
+            
         } catch(e) {
             debug(`Invalid cron expression ${e}`);
             throw new Error("Invalid cron expression");
         }
 
-
-        return this.adapter.createJob(j);
+        return this.createDefaultJob(name, options)
+        .then((j:Job) => {
+            j.nextRunAt = nextRunDt;
+            j.cronexp = cronexp;
+            return this.adapter.createJob(j);
+        });
 
     }
 
     createOnetimeJob(name:string, runAt: Date, options:JobOptions = {}): Promise<Job> {
 
-        const j = this.createDefaultJob(name, options);
-        j.nextRunAt = runAt;
+        return this.createDefaultJob(name, options)
+        .then((j: Job) => {
+            j.nextRunAt = runAt;
+            return this.adapter.createJob(j);
+        })
 
-        return this.adapter.createJob(j);
+    }
+
+    removeJobByName(name:string):Promise<boolean> {
+        return this.adapter.removeJobByName(name);
     }
 
     start(){

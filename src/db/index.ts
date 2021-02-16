@@ -34,5 +34,9 @@ export interface Job {
     public abstract loadJobs(loadIntervalSeconds:number): Promise<Job[]>;
     
     public abstract claimJobRun(job: Job): Promise<Job | null>;
+
+    public abstract findJobByName(name: string): Promise<Job |null>;
+
+    public abstract removeJobByName(name: string): Promise<boolean>;
   }
   

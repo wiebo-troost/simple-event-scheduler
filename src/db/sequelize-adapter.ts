@@ -163,6 +163,29 @@ class SequelizeAdapter extends DBAdapter{
           return ret;
         });
     }
+
+    public findJobByName(name: string):Promise<Job | null> {
+      return JobsModel.findOne({
+        where: {name}
+      })
+      .then(result => {
+        let j:Job | null = null;
+        if (result) {
+          j = result.toJSON() as Job;
+        }
+        return j;
+      })
+    }
+
+    public removeJobByName(name: string):Promise<boolean> {
+      return JobsModel.destroy({
+        where: {name}
+      })
+      .then(result => {
+        let ret:boolean = result == 1;
+        return ret;
+      })
+    }
 }
 
 export { SequelizeAdapter };

@@ -106,7 +106,57 @@ describe("Create the scheduler", () => {
       });
   });
 
-  describe("process jobs", function () {
+  it('should not allow duplicate jobs', () => {
+    const schedDate1 = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
+    schedDate1.setHours(15, 0, 0, 0); //tomorrow at 3pm
+
+    let err:any
+
+    return scheduler
+      .createOnetimeJob("onetimer1", schedDate1)
+      .then((job: Job) => {
+        return scheduler.createOnetimeJob("onetimer1", schedDate1);
+      })
+      .catch(error => {
+        err = error.message;
+        return -1;
+      })
+      .then((val:any) => {
+        expect(val).to.equal(-1);
+        expect(err).to.equal("Duplicate job");
+      });
+
+  });
+
+  it("should delete a job from database", () => {
+    const schedDate1 = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
+    schedDate1.setHours(15, 0, 0, 0); //tomorrow at 3pm
+
+    const schedDate2 = new Date(new Date().getTime() + 1000 * 60 * 60 * 24);
+    schedDate2.setHours(16, 0, 0, 0); //tomorrow at 4pm
+
+    return scheduler
+      .createOnetimeJob("onetimer1", schedDate1)
+      .then((job: Job) => {
+        return scheduler.createOnetimeJob("onetimer2", schedDate2);
+      }).then(job2 => {
+        return scheduler.removeJobByName("onetimer2");
+      })
+      .then((result) => {
+        expect(result).to.be(true);
+        //now fetch from the database and check the data
+        const JobModel = sequelize.models["JobsModel"];
+
+        return JobModel.findAll();
+      })
+      .then((data) => {
+        expect(data.length).to.be(1);
+        const job1: Job = data[0].toJSON() as Job;
+        expect(job1.name).to.equal("onetimer1");
+      });
+  });
+
+  xdescribe("process jobs", function () {
     // Note the function above, allows access to the mocha context
     // (fat arrow does not)
     // so we can set the test timeout to 10000, and the delay below to 6000.
