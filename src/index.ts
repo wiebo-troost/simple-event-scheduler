@@ -12,7 +12,6 @@ import parser from "cron-parser";
 import createDebug from "debug";
 import delay from "delay";
 import { EventEmitter } from "events";
-import { mapFinderOptions } from "sequelize/types/lib/utils";
 import { DBAdapter, Job } from "./db";
 import { SequelizeAdapter } from "./db/sequelize-adapter";
 
@@ -278,4 +277,4 @@ class SimpleEventScheduler extends EventEmitter {
 
 }
 
-export { SimpleEventScheduler, SequelizeAdapter, DBAdapter };
+export { SimpleEventScheduler, SequelizeAdapter, DBAdapter, Job };

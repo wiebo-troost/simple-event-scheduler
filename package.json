@@ -8,8 +8,8 @@
     "test": "mocha -r ts-node/register ./test/**/*.spec.ts --no-timeouts",
     "build": "tsc",
     "deploy": "np",
-    "docs":"typedoc",
-    "lint":"eslint ./src --ext .ts"
+    "docs": "typedoc",
+    "lint": "eslint ./src --ext .ts"
   },
   "keywords": [
     "job",

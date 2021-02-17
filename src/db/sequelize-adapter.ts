@@ -68,9 +68,6 @@ class SequelizeAdapter extends DBAdapter{
                   nextRunAt: {
                     type: DataTypes.DATE,
                   },
-                  intervalSeconds: {
-                    type: DataTypes.INTEGER,
-                  },
                   lastRunTime: {
                     type: DataTypes.INTEGER,
                     allowNull: false,

@@ -9,7 +9,6 @@ export interface Job {
     active?: boolean;
     cronexp?: string;
     nextRunAt?: Date | null;
-    intervalSeconds?: string;
     lastRunTime?: number;
     startDate?: Date | number | null;
     endDate?: Date | number | null;
