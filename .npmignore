@@ -1,16 +1,11 @@
 .editorconfig
-.idea
-.jsdoc.json
 .travis.yml
 docs
 History.md
 Makefile
-renovate.json
 test
-yarn.lock
 .vscode
 src
-tsdocs
 create_db.sql
 docker-compose.yml
 tsconfig.json
