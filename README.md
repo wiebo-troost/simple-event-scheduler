@@ -11,6 +11,9 @@ Typically you don't actualy need the scheduler to execute the job, merely receiv
 a job needs to be executed is much better. You already have a fully configured server runtime environment, there is no need to replicate that to a 'job-runner'. If you're in the situation that
 you a long running job that consumes a large amount of resources, this scheduler offers the flexibility to run those jobs in a dedicated environment. So it's the best of both worlds! 
 
+# Getting Started
+Install the scheduler with `npm install simple-event-scheduler`.
+Please refer to the [documentation](https://binaryops-wiebo.github.io/simple-event-scheduler/) for all the details.
 # Persistent jobs
 
 The 'jobs' are stored in the database. Database adapters are used to persist the job data in the database of
@@ -82,5 +85,9 @@ In the example below, only `month-end` and and `log-archive` events are emitted 
 ```
 const scheduler = new SimpleEventScheduler(adapter, {emittingChannels:['month-end', 'log-archive']});
 ```
+
+
+# Need Support?
+Simple Event Scheduler is developed and maintained by [BinaryOps Software Inc.](https://binaryops.ca) in Canada.
 
 

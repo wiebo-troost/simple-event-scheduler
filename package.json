@@ -12,6 +12,13 @@
     "docs": "typedoc",
     "lint": "eslint ./src --ext .ts"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binaryops-wiebo/simple-event-scheduler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/binaryops-wiebo/simple-event-scheduler/issues"
+  },
   "keywords": [
     "job",
     "scheduler",
