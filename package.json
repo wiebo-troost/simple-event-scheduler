@@ -1,6 +1,6 @@
 {
   "name": "simple-event-scheduler",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A job scheduler that emits events rather than processes the jobs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
