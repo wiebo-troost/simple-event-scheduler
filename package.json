@@ -5,7 +5,7 @@
   "main": "dist/simple-event-scheduler/index.js",
   "types": "dist/simple-event-scheduler/index.d.ts",
   "scripts": {
-    "test": "test",
+    "test": "mocha -r ts-node/register ./test/**/*.spec.ts --no-timeouts",
     "build": "tsc",
     "deploy": "np",
     "tsdoc": "typedoc --out tsdocs ./src"

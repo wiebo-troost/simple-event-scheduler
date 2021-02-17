@@ -221,7 +221,7 @@ describe("Create the scheduler", () => {
     // Note the function above, allows access to the mocha context
     // (fat arrow does not)
     // so we can set the test timeout to 10000, and the delay below to 6000.
-    this.timeout(30000);
+    this.timeout(10000);
     afterEach(() => {
       scheduler.stop();
     });
@@ -249,7 +249,7 @@ describe("Create the scheduler", () => {
           scheduler.start();
         })
         .then(() => {
-          return delay(9000);
+          return delay(5000);
         })
         .then(() => {
           scheduler.stop();
