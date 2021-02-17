@@ -61,7 +61,74 @@
 				<a href="#simple-event-scheduler" id="simple-event-scheduler" style="color: inherit; text-decoration: none;">
 					<h1>Simple Event Scheduler</h1>
 				</a>
-				<p>Here is the content from the README file.</p>
+				<p>There are a few scheduler solutions avaiable, but few that meet the requirements for
+				a microservices 12 factor app.</p>
+				<p>What you&#39;re looking for is a solution that can scale up with your application. Is adaptable to
+					many different configuration scenarios, guarantees single delivery of scheduled events, and recovers
+				from unscheduled down time.</p>
+				<p>Typically you don&#39;t actualy need the scheduler to execute the job, merely receiving the event that
+					a job needs to be executed is much better. You already have a fully configured server runtime environment, there is no need to replicate that to a &#39;job-runner&#39;. If you&#39;re in the situation that
+				you a long running job that consumes a large amount of resources, this scheduler offers the flexibility to run those jobs in a dedicated environment. So it&#39;s the best of both worlds! </p>
+				<a href="#persistent-jobs" id="persistent-jobs" style="color: inherit; text-decoration: none;">
+					<h1>Persistent jobs</h1>
+				</a>
+				<p>The &#39;jobs&#39; are stored in the database. Database adapters are used to persist the job data in the database of
+					your choice. When many instances of the scheduler are active in your landscape, the ACID transaction on the
+				job record governs which instance gets to emit the event.</p>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h1>Usage</h1>
+				</a>
+				<p>The Simple Event Scheduler relies on the configuration of its runtime environment. Therefore you need to instantiate a database
+				adapter with a database connection. The adapter is then passed into the scheduler. In the case of the SequelizeAdapter, you pass in a sequelize instance. </p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">adapter</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SequelizeAdapter</span><span style="color: #000000">(</span><span style="color: #001080">sequelize</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">scheduler</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SimpleEventScheduler</span><span style="color: #000000">(</span><span style="color: #001080">adapter</span><span style="color: #000000">);</span>
+
+<span style="color: #001080">scheduler</span><span style="color: #000000">.</span><span style="color: #795E26">start</span><span style="color: #000000">(); </span><span style="color: #008000">//start as needed</span>
+<span style="color: #001080">scheduler</span><span style="color: #000000">.</span><span style="color: #795E26">stop</span><span style="color: #000000">();  </span><span style="color: #008000">//stop as needed.</span>
+
+</code></pre>
+				<p>Upon start, the scheduler will load the active jobs from the database. It will periodically go back to the
+				database, to synchronize with any potential other scheduler instances. The frequency of database access is configurable.</p>
+				<a href="#creating-jobs" id="creating-jobs" style="color: inherit; text-decoration: none;">
+					<h2>Creating Jobs</h2>
+				</a>
+				<p>The scheduler supports one-time jobs, that execute at a given time, and recurring jobs. The recurring jobs are created with a cron expression. Internally cron-parser is used to calculate the next required run date and time of the job.</p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">now</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">();</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">schedDate</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #267F99">Date</span><span style="color: #000000">(</span><span style="color: #001080">now</span><span style="color: #000000">.</span><span style="color: #795E26">getTime</span><span style="color: #000000">() + </span><span style="color: #098658">1000</span><span style="color: #000000"> * </span><span style="color: #098658">60</span><span style="color: #000000"> * </span><span style="color: #098658">60</span><span style="color: #000000"> * </span><span style="color: #098658">24</span><span style="color: #000000">);</span>
+<span style="color: #001080">schedDate</span><span style="color: #000000">.</span><span style="color: #795E26">setHours</span><span style="color: #000000">(</span><span style="color: #098658">15</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">, </span><span style="color: #098658">0</span><span style="color: #000000">); </span><span style="color: #008000">//tomorrow at 3pm</span>
+<span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">scheduler</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">createOnetimeJob</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;onetimer1&quot;</span><span style="color: #000000">, </span><span style="color: #001080">schedDate</span><span style="color: #000000">)</span>
+</code></pre>
+				<pre><code><span style="color: #008000">// every 5 seconds</span>
+<span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">scheduler</span>
+<span style="color: #000000">        .</span><span style="color: #795E26">createRecurringJob</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;recurring-emit&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;*/5 * * * * *&quot;</span><span style="color: #000000">)</span>
+</code></pre>
+				<a href="#listening-to-events" id="listening-to-events" style="color: inherit; text-decoration: none;">
+					<h2>Listening to events</h2>
+				</a>
+				<p>By default the scheduler emits all the events, for all the jobs.</p>
+				<pre><code><span style="color: #001080">scheduler</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;jobs&quot;</span><span style="color: #000000">, (</span><span style="color: #001080">eventData</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">//call your function here.</span>
+<span style="color: #000000">});</span>
+
+</code></pre>
+				<p>The string literal &quot;jobs&quot; is the default channel name for events. This default can be changed using the options passed into the scheduler.</p>
+				<p>The channel for a given job can also be changed using the options passed into the job creation method.</p>
+				<pre><code><span style="color: #008000">//create a job on the `myemail` channel and setup a listener</span>
+<span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #001080">scheduler</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">createOnetimeJob</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;onetimer1&quot;</span><span style="color: #000000">, </span><span style="color: #001080">schedDate</span><span style="color: #000000">, {</span><span style="color: #001080">channel:</span><span style="color: #A31515">&#039;myemail&#039;</span><span style="color: #000000">})</span>
+
+<span style="color: #001080">scheduler</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;myemail&quot;</span><span style="color: #000000">,  (</span><span style="color: #001080">eventData</span><span style="color: #000000">: </span><span style="color: #267F99">any</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">//call your function here.</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#spread-the-load-by-filtering-the-emitted-channels" id="spread-the-load-by-filtering-the-emitted-channels" style="color: inherit; text-decoration: none;">
+					<h2>Spread the load by filtering the emitted channels</h2>
+				</a>
+				<p>You can configure the scheduler to only emit jobs for one or a few channels. This facilitates the case where you have some jobs that consume a large amount of resources, or need to be executed in a seperate environment for another reason.</p>
+				<p>In the example below, only <code>month-end</code> and and <code>log-archive</code> events are emitted from that scheduler instance. </p>
+				<pre><code><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">scheduler</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">SimpleEventScheduler</span><span style="color: #000000">(</span><span style="color: #001080">adapter</span><span style="color: #000000">, {</span><span style="color: #001080">emittingChannels:</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;month-end&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;log-archive&#039;</span><span style="color: #000000">]});</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
