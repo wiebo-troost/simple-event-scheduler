@@ -151,6 +151,8 @@ class SimpleEventScheduler extends EventEmitter {
     start():void{
         debug("starting");
         
+        //reset the last db load time, so we'll load the jobs from the db on the first .run()
+        this._lastDbLoadTime = this._startDate.getTime() - ((this.schedulerOptions.dbLoadIntervalSeconds) as number * 1000) - 1;
         
         this._running = true;
         this.run();
@@ -163,6 +165,7 @@ class SimpleEventScheduler extends EventEmitter {
     }
 
     run():void {
+        
         this.loadJobsIfNeeded()
         .then(() => {
             return this.processJobs()

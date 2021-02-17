@@ -222,6 +222,14 @@ describe("Create the scheduler", () => {
     // (fat arrow does not)
     // so we can set the test timeout to 10000, and the delay below to 6000.
     this.timeout(10000);
+
+    before(() => {
+      adapter.purgeJobs({})
+      .then(result => {
+        return 0;
+      })
+    });
+
     afterEach(() => {
       scheduler.stop();
     });
@@ -231,7 +239,7 @@ describe("Create the scheduler", () => {
       const schedDate = new Date(now.getTime() + 1000 * 3);
       //4 seconds from now.
 
-      const channelName: string = "testing123"
+      const channelName: string = "designated-test123"
 
       let events:any[] = [];
       scheduler.on(channelName, (eventData: any) => {
@@ -244,7 +252,7 @@ describe("Create the scheduler", () => {
       });
 
       return scheduler
-        .createOnetimeJob("onetime-emit", schedDate, {channel:channelName})
+        .createOnetimeJob("designated-onetime-emit", schedDate, {channel:channelName})
         .then((job: Job) => {
           scheduler.start();
         })
@@ -255,7 +263,7 @@ describe("Create the scheduler", () => {
           scheduler.stop();
           scheduler.removeAllListeners();
           expect(events.length).to.be(1);
-          expect(jobEvents.length).to.be(0)
+          expect(jobEvents.length).to.be(0);
         });
     });
 
