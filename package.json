@@ -7,6 +7,7 @@
   "scripts": {
     "test": "mocha -r ts-node/register ./test/**/*.spec.ts --no-timeouts",
     "build": "tsc",
+    "predeploy": "npm run build",
     "deploy": "np",
     "docs": "typedoc",
     "lint": "eslint ./src --ext .ts"
