@@ -8,7 +8,7 @@
     "test": "mocha -r ts-node/register ./test/**/*.spec.ts --no-timeouts",
     "build": "tsc",
     "deploy": "np",
-    "tsdoc": "typedoc --out tsdocs ./src"
+    "tsdoc": "typedoc --out docs ./src"
   },
   "keywords": [
     "job",
