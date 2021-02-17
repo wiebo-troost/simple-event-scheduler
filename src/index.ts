@@ -1,11 +1,23 @@
+
+/**
+ * 
+ * Foo 123 
+ * @packageDocumentation here we go 1 2 3
+ * 
+ * Here is more
+ */
+
+
 import parser from "cron-parser";
 import createDebug from "debug";
 import delay from "delay";
 import { EventEmitter } from "events";
+import { mapFinderOptions } from "sequelize/types/lib/utils";
 import { DBAdapter, Job } from "./db";
 import { SequelizeAdapter } from "./db/sequelize-adapter";
 
 const debug = createDebug('simple-scheduler')
+
 
 /**
  * Declares the options that can be specified for creating a new job schedule
@@ -17,7 +29,7 @@ export interface JobOptions {
 }
 
 /**
- * Declares the options that can be specified for instantiating a simeple event scheduler.
+ * Declares the options that can be specified for instantiating a simple event scheduler.
  */
 export interface SchedulerOptions {
     defaultChannelName?: string;
