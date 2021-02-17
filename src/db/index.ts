@@ -30,7 +30,7 @@ export interface Job {
      * argument must be applicable to sequelize, it is applied to the `where` property 
      * of the options object.
      */
-    public abstract purgeJobs(query: any): Promise<number>;
+    public abstract purgeJobs(query: any): Promise<number>; // eslint-disable-line
     
     public abstract loadJobs(loadIntervalSeconds:number): Promise<Job[]>;
     

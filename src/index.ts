@@ -2,17 +2,23 @@ import parser from "cron-parser";
 import createDebug from "debug";
 import delay from "delay";
 import { EventEmitter } from "events";
-import { DBAdapter, Job } from "../db";
-import { SequelizeAdapter } from "../db/sequelize-adapter";
+import { DBAdapter, Job } from "./db";
+import { SequelizeAdapter } from "./db/sequelize-adapter";
 
 const debug = createDebug('simple-scheduler')
 
+/**
+ * Declares the options that can be specified for creating a new job schedule
+ */
 export interface JobOptions {
     startDate?: Date;
     endDate?:Date;
     channel?:string;
 }
 
+/**
+ * Declares the options that can be specified for instantiating a simeple event scheduler.
+ */
 export interface SchedulerOptions {
     defaultChannelName?: string;
     dbLoadIntervalSeconds?: number;
@@ -26,7 +32,7 @@ export interface SchedulerOptions {
 class SimpleEventScheduler extends EventEmitter {
 
     private _startDate: Date;
-    private _running:boolean = false;
+    private _running = false;
     private schedulerOptions: SchedulerOptions;
     private _lastDbLoadTime: number;
 
@@ -49,7 +55,7 @@ class SimpleEventScheduler extends EventEmitter {
     }
 
     private getNextRunFromCron(cronexp: string): Date {
-        const cronOptions:any = {
+        const cronOptions = {
             currentDate: new Date()
         }
         const interval = parser.parseExpression(cronexp, cronOptions);
@@ -131,7 +137,7 @@ class SimpleEventScheduler extends EventEmitter {
         return this.adapter.removeJobByName(name);
     }
 
-    start(){
+    start():void{
         debug("starting");
         
         
@@ -139,13 +145,13 @@ class SimpleEventScheduler extends EventEmitter {
         this.run();
     }
     
-    stop() {
+    stop():void {
         debug("stopping");
         //sets a flag that prevents the next timeout
         this._running = false;
     }
 
-    run() {
+    run():void {
         this.loadJobsIfNeeded()
         .then(() => {
             return this.processJobs()
@@ -177,7 +183,7 @@ class SimpleEventScheduler extends EventEmitter {
                 debug("Loading Jobs from DB");
                 return this.adapter.loadJobs(this.schedulerOptions.dbLoadIntervalSeconds as number)
                 .then(jobs => {
-                    this.currentJobs = jobs.sort((a,b) => a.nextRunAt!.getTime() - b.nextRunAt!.getTime())
+                    this.currentJobs = jobs.sort((a,b) => a.nextRunAt!.getTime() - b.nextRunAt!.getTime())// eslint-disable-line
                 })
                 
             } else {
@@ -187,21 +193,22 @@ class SimpleEventScheduler extends EventEmitter {
         })
     }
 
-    private processJobs(): Promise<any> {
+    private processJobs(): Promise<void> {
         const now = (new Date()).getTime()
         // debug(`process tick ${now}` );
         return Promise.resolve()
         .then(() => {
             // debug(`current Jobs Count: ${this.currentJobs.length} `);
             this.currentJobs.map(async (job) => {
-                if (job.nextRunAt!.getTime() < now) {
+                if (job.nextRunAt!.getTime() < now) {// eslint-disable-line
                     await this.processOneJob(job)
                     .catch(err => {
                         debug("Error processing job: ", err);
                         console.log(err);
                     });
                 }
-            })
+            });
+            return;
         })
     }
 
@@ -220,7 +227,7 @@ class SimpleEventScheduler extends EventEmitter {
             }
             if (updatedJob) {
                 debug("emitting for job ")
-                let doEmit: boolean = true;
+                let doEmit = true;
                 if (this.schedulerOptions.emittingChannels && this.schedulerOptions.emittingChannels.length > 0 ) {
                     const channelIx = this.schedulerOptions.emittingChannels.findIndex(c => c === job.channel);
                     doEmit = (channelIx >= 0);
@@ -241,7 +248,6 @@ class SimpleEventScheduler extends EventEmitter {
     }
 
     private needToLoadJobs(): boolean {
-        let ret = false;
         const now = (new Date()).getTime();
 
         return now > (this._lastDbLoadTime + (this.schedulerOptions.dbLoadIntervalSeconds as number * 1000));

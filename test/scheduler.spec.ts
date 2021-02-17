@@ -1,7 +1,7 @@
 import "mocha";
 import expect from "expect.js";
 import delay from "delay";
-import { SimpleEventScheduler } from "../src/simple-event-scheduler";
+import { SimpleEventScheduler } from "../src";
 import { DBAdapter, Job } from "../src/db";
 import { SequelizeAdapter } from "../src/db/sequelize-adapter";
 import { Sequelize } from "sequelize";

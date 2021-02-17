@@ -1,6 +1,14 @@
 import { DataTypes, Model, Op, Sequelize } from "sequelize";
 import { DBAdapter, Job } from ".";
 
+
+export interface SequelizeAdapterOptions {
+  /**
+   * Specify the name of the table that is used for persisting job event schedules.
+   */
+  tablename?: string; 
+}
+
 /**
  * @class JobsModel
  * Sequelize model for the jobs table
@@ -25,18 +33,15 @@ class JobsModel extends Model<Job> implements Job {
    */
 class SequelizeAdapter extends DBAdapter{
 
-    private options: any;
     
-    constructor(private sequelize: Sequelize, options?:any){
+    constructor(private sequelize: Sequelize, options?:SequelizeAdapterOptions){ 
         super();
         const opts = options || {}
         this.initModel(opts);
     }
     
-    private initModel(opts: any){
+    private initModel(opts: SequelizeAdapterOptions){
         opts.tablename = opts.tablename || 'job';
-        opts.modelname = opts.modelname || 'JobsModel';
-        this.options = opts;
         
         JobsModel.init(
                 {
@@ -99,7 +104,7 @@ class SequelizeAdapter extends DBAdapter{
     }
 
     
-    public purgeJobs(query: any): Promise<number> {
+    public purgeJobs(query: any): Promise<number> {// eslint-disable-line
         return JobsModel.destroy({where: query})
         .then(result => {
             return result;
@@ -115,7 +120,7 @@ class SequelizeAdapter extends DBAdapter{
       const now = new Date();
       const runtimeCutoff = new Date(now.getTime() + (loadIntervalSeconds * 1000));
 
-      const qry:any = {
+      const qry = {
         where:{
           active:true,
           nextRunAt: {[Op.lte]: runtimeCutoff},
@@ -185,7 +190,7 @@ class SequelizeAdapter extends DBAdapter{
         where: {name}
       })
       .then(result => {
-        let ret:boolean = result == 1;
+        const ret:boolean = result == 1;
         return ret;
       })
     }

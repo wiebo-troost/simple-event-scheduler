@@ -2,13 +2,14 @@
   "name": "simple-event-scheduler",
   "version": "1.0.1",
   "description": "A job scheduler that emits events rather than processes the jobs",
-  "main": "dist/simple-event-scheduler/index.js",
-  "types": "dist/simple-event-scheduler/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "mocha -r ts-node/register ./test/**/*.spec.ts --no-timeouts",
     "build": "tsc",
     "deploy": "np",
-    "tsdoc": "typedoc --out docs ./src"
+    "tsdoc": "typedoc --out docs ./src",
+    "lint":"eslint ./src --ext .ts,.tsx"
   },
   "keywords": [
     "job",
@@ -21,6 +22,10 @@
     "@types/debug": "^4.1.5",
     "@types/expect.js": "^0.3.29",
     "@types/mocha": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-plugin-tsdoc": "^0.2.11",
     "expect.js": "^0.3.1",
     "mocha": "^8.3.0",
     "mysql2": "^2.2.5",
