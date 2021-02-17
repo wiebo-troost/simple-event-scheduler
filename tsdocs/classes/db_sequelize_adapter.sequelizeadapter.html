@@ -102,9 +102,11 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#claimjobrun" class="tsd-kind-icon">claim<wbr>Job<wbr>Run</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="db_sequelize_adapter.sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#loadjobs" class="tsd-kind-icon">load<wbr>Jobs</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a></li>
 							</ul>
 						</section>
 					</div>
@@ -123,7 +125,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L28">src/db/sequelize-adapter.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L28">src/db/sequelize-adapter.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -148,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L28">src/db/sequelize-adapter.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L28">src/db/sequelize-adapter.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -166,7 +168,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#claimjobrun">claimJobRun</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L143">src/db/sequelize-adapter.ts:143</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L146">src/db/sequelize-adapter.ts:146</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -200,7 +202,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#createjob">createJob</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L85">src/db/sequelize-adapter.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L88">src/db/sequelize-adapter.ts:88</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -210,6 +212,30 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="findjobbyname" class="tsd-anchor"></a>
+					<h3>find<wbr>Job<wbr>ByName</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Job<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#findjobbyname">findJobByName</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L170">src/db/sequelize-adapter.ts:170</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -223,7 +249,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L36">src/db/sequelize-adapter.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L36">src/db/sequelize-adapter.ts:36</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -247,7 +273,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#loadjobs">loadJobs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L110">src/db/sequelize-adapter.ts:110</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L113">src/db/sequelize-adapter.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -279,7 +305,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#purgejobs">purgeJobs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/db/sequelize-adapter.ts#L99">src/db/sequelize-adapter.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L102">src/db/sequelize-adapter.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -289,6 +315,30 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="removejobbyname" class="tsd-anchor"></a>
+					<h3>remove<wbr>Job<wbr>ByName</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Job<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides <a href="db.dbadapter.html">DBAdapter</a>.<a href="db.dbadapter.html#removejobbyname">removeJobByName</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/db/sequelize-adapter.ts#L183">src/db/sequelize-adapter.ts:183</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -330,6 +380,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="db_sequelize_adapter.sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="db_sequelize_adapter.sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
 								<a href="db_sequelize_adapter.sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a>
 							</li>
@@ -338,6 +391,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
 								<a href="db_sequelize_adapter.sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="db_sequelize_adapter.sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a>
 							</li>
 						</ul>
 					</li>

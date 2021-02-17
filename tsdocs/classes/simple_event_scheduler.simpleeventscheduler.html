@@ -102,11 +102,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#_dbloadintervalseconds" class="tsd-kind-icon">_db<wbr>Load<wbr>Interval<wbr>Seconds</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#_lastdbloadtime" class="tsd-kind-icon">_last<wbr>DbLoad<wbr>Time</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#_running" class="tsd-kind-icon">_running</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#_startdate" class="tsd-kind-icon">_start<wbr>Date</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#currentjobs" class="tsd-kind-icon">current<wbr>Jobs</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#scheduleroptions" class="tsd-kind-icon">scheduler<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#capturerejectionsymbol" class="tsd-kind-icon">capture<wbr>Rejection<wbr>Symbol</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#capturerejections" class="tsd-kind-icon">capture<wbr>Rejections</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
@@ -138,6 +138,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="simple_event_scheduler.simpleeventscheduler.html#processonejob" class="tsd-kind-icon">process<wbr>One<wbr>Job</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simple_event_scheduler.simpleeventscheduler.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="simple_event_scheduler.simpleeventscheduler.html#run" class="tsd-kind-icon">run</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="simple_event_scheduler.simpleeventscheduler.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
@@ -157,13 +158,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Simple<wbr>Event<wbr>Scheduler<span class="tsd-signature-symbol">(</span>adapter<span class="tsd-signature-symbol">: </span><a href="db.dbadapter.html" class="tsd-signature-type" data-tsd-kind="Class">DBAdapter</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="simple_event_scheduler.simpleeventscheduler.html" class="tsd-signature-type" data-tsd-kind="Class">SimpleEventScheduler</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Simple<wbr>Event<wbr>Scheduler<span class="tsd-signature-symbol">(</span>adapter<span class="tsd-signature-symbol">: </span><a href="db.dbadapter.html" class="tsd-signature-type" data-tsd-kind="Class">DBAdapter</a>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/simple_event_scheduler.scheduleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SchedulerOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="simple_event_scheduler.simpleeventscheduler.html" class="tsd-signature-type" data-tsd-kind="Class">SimpleEventScheduler</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L26">src/simple-event-scheduler/index.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L33">src/simple-event-scheduler/index.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -179,6 +180,9 @@
 										<p>The database adapter to be used for persisting the schedule.</p>
 									</div>
 								</li>
+								<li>
+									<h5>options: <a href="../interfaces/simple_event_scheduler.scheduleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SchedulerOptions</a><span class="tsd-signature-symbol"> = ...</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="simple_event_scheduler.simpleeventscheduler.html" class="tsd-signature-type" data-tsd-kind="Class">SimpleEventScheduler</a></h4>
 						</li>
@@ -188,22 +192,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="_dbloadintervalseconds" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _db<wbr>Load<wbr>Interval<wbr>Seconds</h3>
-					<div class="tsd-signature tsd-kind-icon">_db<wbr>Load<wbr>Interval<wbr>Seconds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 10</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L23">src/simple-event-scheduler/index.ts:23</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_lastdbloadtime" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _last<wbr>DbLoad<wbr>Time</h3>
 					<div class="tsd-signature tsd-kind-icon">_last<wbr>DbLoad<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L24">src/simple-event-scheduler/index.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L31">src/simple-event-scheduler/index.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -213,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">_running<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L22">src/simple-event-scheduler/index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L29">src/simple-event-scheduler/index.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -223,7 +217,7 @@
 					<div class="tsd-signature tsd-kind-icon">_start<wbr>Date<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Date</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L21">src/simple-event-scheduler/index.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L28">src/simple-event-scheduler/index.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -233,7 +227,17 @@
 					<div class="tsd-signature tsd-kind-icon">current<wbr>Jobs<span class="tsd-signature-symbol">:</span> <a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L26">src/simple-event-scheduler/index.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L33">src/simple-event-scheduler/index.ts:33</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="scheduleroptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> scheduler<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">scheduler<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/simple_event_scheduler.scheduleroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SchedulerOptions</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L30">src/simple-event-scheduler/index.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -243,7 +247,7 @@
 					<div class="tsd-signature tsd-kind-icon">capture<wbr>Rejection<wbr>Symbol<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="simple_event_scheduler.simpleeventscheduler.html#capturerejectionsymbol" class="tsd-signature-type" data-tsd-kind="Property">captureRejectionSymbol</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:38</li>
+							<li>Defined in node_modules/@types/node/events.d.ts:43</li>
 						</ul>
 					</aside>
 				</section>
@@ -253,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">capture<wbr>Rejections<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:44</li>
+							<li>Defined in node_modules/@types/node/events.d.ts:49</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -268,7 +272,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Max<wbr>Listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:45</li>
+							<li>Defined in node_modules/@types/node/events.d.ts:50</li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +282,7 @@
 					<div class="tsd-signature tsd-kind-icon">error<wbr>Monitor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">typeof </span><a href="simple_event_scheduler.simpleeventscheduler.html#errormonitor" class="tsd-signature-type" data-tsd-kind="Property">errorMonitor</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/@types/node/events.d.ts:37</li>
+							<li>Defined in node_modules/@types/node/events.d.ts:42</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -305,7 +309,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:57</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:62</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -349,7 +353,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L212">src/simple-event-scheduler/index.ts:212</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L250">src/simple-event-scheduler/index.ts:250</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -366,13 +370,13 @@
 					<a name="createdefaultjob" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> create<wbr>Default<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Default<wbr>Job<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/simple_event_scheduler.joboptions.html" class="tsd-signature-type" data-tsd-kind="Interface">JobOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Default<wbr>Job<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">: </span><a href="../interfaces/simple_event_scheduler.joboptions.html" class="tsd-signature-type" data-tsd-kind="Interface">JobOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L53">src/simple-event-scheduler/index.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L65">src/simple-event-scheduler/index.ts:65</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -384,7 +388,7 @@
 									<h5>options: <a href="../interfaces/simple_event_scheduler.joboptions.html" class="tsd-signature-type" data-tsd-kind="Interface">JobOptions</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/db.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -398,7 +402,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L95">src/simple-event-scheduler/index.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L120">src/simple-event-scheduler/index.ts:120</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -427,7 +431,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L72">src/simple-event-scheduler/index.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L94">src/simple-event-scheduler/index.ts:94</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -465,7 +469,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:67</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:72</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -491,7 +495,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:72</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:77</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
@@ -508,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:64</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:69</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -525,7 +529,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L39">src/simple-event-scheduler/index.ts:39</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L51">src/simple-event-scheduler/index.ts:51</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -548,7 +552,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:68</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:73</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -571,7 +575,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:65</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:70</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -594,7 +598,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L139">src/simple-event-scheduler/index.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L170">src/simple-event-scheduler/index.ts:170</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -611,7 +615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L205">src/simple-event-scheduler/index.ts:205</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L243">src/simple-event-scheduler/index.ts:243</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -628,7 +632,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:61</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:66</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -672,7 +676,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:58</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:63</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -716,7 +720,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:59</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:64</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -760,7 +764,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:70</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:75</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -804,7 +808,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:71</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:76</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -848,7 +852,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L159">src/simple-event-scheduler/index.ts:159</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L190">src/simple-event-scheduler/index.ts:190</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -865,7 +869,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L177">src/simple-event-scheduler/index.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L208">src/simple-event-scheduler/index.ts:208</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -888,7 +892,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:66</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:71</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -911,7 +915,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:62</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:67</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -921,6 +925,29 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="simple_event_scheduler.simpleeventscheduler.html" class="tsd-signature-type" data-tsd-kind="Class">SimpleEventScheduler</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="removejobbyname" class="tsd-anchor"></a>
+					<h3>remove<wbr>Job<wbr>ByName</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">remove<wbr>Job<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L130">src/simple-event-scheduler/index.ts:130</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -934,7 +961,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:60</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:65</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -978,7 +1005,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L117">src/simple-event-scheduler/index.ts:117</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L148">src/simple-event-scheduler/index.ts:148</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -995,7 +1022,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:63</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:68</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1018,7 +1045,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L103">src/simple-event-scheduler/index.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L134">src/simple-event-scheduler/index.ts:134</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1035,7 +1062,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/5c38899/src/simple-event-scheduler/index.ts#L111">src/simple-event-scheduler/index.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-scheduler/blob/4a33c9a/src/simple-event-scheduler/index.ts#L142">src/simple-event-scheduler/index.ts:142</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -1052,7 +1079,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:26</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:31</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1085,7 +1112,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:23</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:28</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1112,7 +1139,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:21</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:26</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1129,7 +1156,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/@types/node/events.d.ts:22</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:27</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1181,9 +1208,6 @@
 								<a href="simple_event_scheduler.simpleeventscheduler.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="simple_event_scheduler.simpleeventscheduler.html#_dbloadintervalseconds" class="tsd-kind-icon">_db<wbr>Load<wbr>Interval<wbr>Seconds</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="simple_event_scheduler.simpleeventscheduler.html#_lastdbloadtime" class="tsd-kind-icon">_last<wbr>DbLoad<wbr>Time</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -1194,6 +1218,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="simple_event_scheduler.simpleeventscheduler.html#currentjobs" class="tsd-kind-icon">current<wbr>Jobs</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="simple_event_scheduler.simpleeventscheduler.html#scheduleroptions" class="tsd-kind-icon">scheduler<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static tsd-is-external">
 								<a href="simple_event_scheduler.simpleeventscheduler.html#capturerejectionsymbol" class="tsd-kind-icon">capture<wbr>Rejection<wbr>Symbol</a>
@@ -1273,6 +1300,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="simple_event_scheduler.simpleeventscheduler.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="simple_event_scheduler.simpleeventscheduler.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
 								<a href="simple_event_scheduler.simpleeventscheduler.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
 							</li>
@@ -1303,6 +1333,9 @@
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-module">
 						<a href="../interfaces/simple_event_scheduler.joboptions.html" class="tsd-kind-icon">Job<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/simple_event_scheduler.scheduleroptions.html" class="tsd-kind-icon">Scheduler<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>
