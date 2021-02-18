@@ -40,7 +40,7 @@ describe("Create the scheduler", () => {
   });
 
   it("should instantiate", () => {
-    expect(scheduler.run).to.be.a(Function);
+    expect(scheduler.start).to.be.a(Function);
   });
 
   it("should create a recurring job", () => {
