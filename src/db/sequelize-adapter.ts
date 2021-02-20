@@ -13,17 +13,7 @@ export interface SequelizeAdapterOptions {
  * @class JobsModel
  * Sequelize model for the jobs table
  */
-class JobsModel extends Model<Job> implements Job {
-    id!: number | null;
-    name!: string;
-    active?: boolean;
-    crontab?: string;
-    nextRunAt?: Date | null;
-    intervalSeconds?: string;
-    lastRunTime?: number;
-    startDate?: Date | number | null;
-    endDate?: Date | number | null;
-  }
+class JobsModel extends Model<Job> { }
 
   /**
    * @class SequelizeAdapter
@@ -33,7 +23,6 @@ class JobsModel extends Model<Job> implements Job {
    */
 class SequelizeAdapter extends DBAdapter{
 
-    
     constructor(private sequelize: Sequelize, options?:SequelizeAdapterOptions){ 
         super();
         const opts = options || {}

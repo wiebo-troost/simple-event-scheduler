@@ -231,7 +231,7 @@ class SimpleEventScheduler extends EventEmitter {
                 debug("Loading Jobs from DB");
                 return this.adapter.loadJobs(this.schedulerOptions.dbLoadIntervalSeconds as number)
                 .then(jobs => {
-                    this.currentJobs = jobs.sort((a,b) => a.nextRunAt!.getTime() - b.nextRunAt!.getTime())// eslint-disable-line
+                    this.currentJobs = jobs;
                 })
                 
             } else {
@@ -252,7 +252,7 @@ class SimpleEventScheduler extends EventEmitter {
         .then(() => {
             // debug(`current Jobs Count: ${this.currentJobs.length} `);
             this.currentJobs.map(async (job) => {
-                if (job.nextRunAt!.getTime() < now && this._running) {// eslint-disable-line
+                if (job.nextRunAt && job.nextRunAt.getTime() < now && this._running) {// eslint-disable-line
                     await this.processOneJob(job)
                     .catch(err => {
                         debug("Error processing job: ", err);
