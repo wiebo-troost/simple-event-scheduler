@@ -12,8 +12,29 @@ a job needs to be executed is much better. You already have a fully configured s
 you a long running job that consumes a large amount of resources, this scheduler offers the flexibility to run those jobs in a dedicated environment. So it's the best of both worlds! 
 
 # Getting Started
-Install the scheduler with `npm install simple-event-scheduler`.
 Please refer to the [documentation](https://binaryops-wiebo.github.io/simple-event-scheduler/) for all the details.
+Install the scheduler with `npm install simple-event-scheduler`.
+
+Be default the SequelizeAdapter expects to find a jobs table:
+```
+CREATE TABLE `job` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `channel` varchar(255) NOT NULL,
+  `active` int NOT NULL,
+  `cronexp` varchar(255) NULL,
+  `nextRunAt` datetime NULL,
+  `intervalSeconds` int NULL,
+  `lastRunTime`bigint NOT NULL,
+  `params` varchar(4096) NULL,
+  `startDate` datetime NULL,
+  `endDate` datetime NULL,
+  PRIMARY KEY (id)
+  );
+```
+
+Note that you can override the name of the table with the SeqeulizeAdapterOptions parameters of the constructor.
+
 # Persistent jobs
 
 The 'jobs' are stored in the database. Database adapters are used to persist the job data in the database of

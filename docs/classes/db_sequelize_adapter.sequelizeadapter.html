@@ -55,7 +55,10 @@
 					<a href="../modules.html">Simple Event Scheduler</a>
 				</li>
 				<li>
-					<a href="sequelizeadapter.html">SequelizeAdapter</a>
+					<a href="../modules/db_sequelize_adapter.html">db/sequelize-adapter</a>
+				</li>
+				<li>
+					<a href="db_sequelize_adapter.sequelizeadapter.html">SequelizeAdapter</a>
 				</li>
 			</ul>
 			<h1>Class SequelizeAdapter</h1>
@@ -65,11 +68,24 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Implements all the functions needed for the scheduler to maintain
+							and persist the job records.
+						SequelizeAdapter is constructed as follows:</p>
+					</div>
+					<p>const sequelizeAdapter = new SequelizeAdapter(sequelize, options);
+						You&#39;ll need to pass in your sequelize instance, and an optional SequelizeAdapterOptions object.
+						It has a single property &#39;tablename&#39; whene you have override the default
+					name of &#39;job&#39;.</p>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="dbadapter.html" class="tsd-signature-type" data-tsd-kind="Class">DBAdapter</a>
+						<a href="index.dbadapter.html" class="tsd-signature-type" data-tsd-kind="Class">DBAdapter</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">SequelizeAdapter</span>
@@ -85,19 +101,19 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="sequelizeadapter.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="db_sequelize_adapter.sequelizeadapter.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#claimjobrun" class="tsd-kind-icon">claim<wbr>Job<wbr>Run</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#loadjobs" class="tsd-kind-icon">load<wbr>Jobs</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#claimjobrun" class="tsd-kind-icon">claim<wbr>Job<wbr>Run</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="db_sequelize_adapter.sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#loadjobs" class="tsd-kind-icon">load<wbr>Jobs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="db_sequelize_adapter.sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,26 +125,31 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sequelize<wbr>Adapter<span class="tsd-signature-symbol">(</span>sequelize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Sequelize</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">SequelizeAdapterOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="sequelizeadapter.html" class="tsd-signature-type" data-tsd-kind="Class">SequelizeAdapter</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Sequelize<wbr>Adapter<span class="tsd-signature-symbol">(</span>sequelize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Sequelize</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/db_sequelize_adapter.sequelizeadapteroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SequelizeAdapterOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="db_sequelize_adapter.sequelizeadapter.html" class="tsd-signature-type" data-tsd-kind="Class">SequelizeAdapter</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Inherited from <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#constructor">constructor</a></p>
+								<p>Inherited from <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L24">src/db/sequelize-adapter.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L27">src/db/sequelize-adapter.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sequelize: <span class="tsd-signature-type">Sequelize</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The sequelize instance...</p>
+									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">SequelizeAdapterOptions</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <a href="../interfaces/db_sequelize_adapter.sequelizeadapteroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SequelizeAdapterOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="sequelizeadapter.html" class="tsd-signature-type" data-tsd-kind="Class">SequelizeAdapter</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="db_sequelize_adapter.sequelizeadapter.html" class="tsd-signature-type" data-tsd-kind="Class">SequelizeAdapter</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -139,14 +160,14 @@
 					<a name="claimjobrun" class="tsd-anchor"></a>
 					<h3>claim<wbr>Job<wbr>Run</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">claim<wbr>Job<wbr>Run<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">claim<wbr>Job<wbr>Run<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#claimjobrun">claimJobRun</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#claimjobrun">claimJobRun</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L140">src/db/sequelize-adapter.ts:140</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L144">src/db/sequelize-adapter.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -162,10 +183,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>job: <a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></h5>
+									<h5>job: <a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -173,23 +194,23 @@
 					<a name="createjob" class="tsd-anchor"></a>
 					<h3>create<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Job<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Job<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#createjob">createJob</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#createjob">createJob</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L82">src/db/sequelize-adapter.ts:82</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L90">src/db/sequelize-adapter.ts:90</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>job: <a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></h5>
+									<h5>job: <a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -197,14 +218,14 @@
 					<a name="findjobbyname" class="tsd-anchor"></a>
 					<h3>find<wbr>Job<wbr>ByName</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">find<wbr>Job<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Job<wbr>ByName<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#findjobbyname">findJobByName</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#findjobbyname">findJobByName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L164">src/db/sequelize-adapter.ts:164</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L165">src/db/sequelize-adapter.ts:165</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -213,7 +234,7 @@
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -221,19 +242,19 @@
 					<a name="initmodel" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> init<wbr>Model</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
-						<li class="tsd-signature tsd-kind-icon">init<wbr>Model<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SequelizeAdapterOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">init<wbr>Model<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><a href="../interfaces/db_sequelize_adapter.sequelizeadapteroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SequelizeAdapterOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L32">src/db/sequelize-adapter.ts:32</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L40">src/db/sequelize-adapter.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>opts: <span class="tsd-signature-type">SequelizeAdapterOptions</span></h5>
+									<h5>opts: <a href="../interfaces/db_sequelize_adapter.sequelizeadapteroptions.html" class="tsd-signature-type" data-tsd-kind="Interface">SequelizeAdapterOptions</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -244,14 +265,14 @@
 					<a name="loadjobs" class="tsd-anchor"></a>
 					<h3>load<wbr>Jobs</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">load<wbr>Jobs<span class="tsd-signature-symbol">(</span>loadIntervalSeconds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Jobs<span class="tsd-signature-symbol">(</span>loadIntervalSeconds<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#loadjobs">loadJobs</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#loadjobs">loadJobs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L107">src/db/sequelize-adapter.ts:107</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L113">src/db/sequelize-adapter.ts:113</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,7 +289,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/index.job.html" class="tsd-signature-type" data-tsd-kind="Interface">Job</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -281,9 +302,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#purgejobs">purgeJobs</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#purgejobs">purgeJobs</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L96">src/db/sequelize-adapter.ts:96</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L102">src/db/sequelize-adapter.ts:102</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -305,9 +326,9 @@
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
-								<p>Overrides <a href="dbadapter.html">DBAdapter</a>.<a href="dbadapter.html#removejobbyname">removeJobByName</a></p>
+								<p>Overrides <a href="index.dbadapter.html">DBAdapter</a>.<a href="index.dbadapter.html#removejobbyname">removeJobByName</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/388623e/src/db/sequelize-adapter.ts#L177">src/db/sequelize-adapter.ts:177</a></li>
+									<li>Defined in <a href="https://github.com/binaryops-wiebo/simple-event-scheduler/blob/ce3a754/src/db/sequelize-adapter.ts#L177">src/db/sequelize-adapter.ts:177</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -326,59 +347,53 @@
 			<nav class="tsd-navigation primary">
 				<ul>
 					<li class=" ">
-						<a href="../modules.html">Exports</a>
+						<a href="../modules.html">Modules</a>
+					</li>
+					<li class="current tsd-kind-module">
+						<a href="../modules/db_sequelize_adapter.html">db/sequelize-<wbr>adapter</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="../modules/index.html">index</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-class">
-						<a href="dbadapter.html" class="tsd-kind-icon">DBAdapter</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="sequelizeadapter.html" class="tsd-kind-icon">Sequelize<wbr>Adapter</a>
+					<li class="current tsd-kind-class tsd-parent-kind-module">
+						<a href="db_sequelize_adapter.sequelizeadapter.html" class="tsd-kind-icon">Sequelize<wbr>Adapter</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
-								<a href="sequelizeadapter.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#claimjobrun" class="tsd-kind-icon">claim<wbr>Job<wbr>Run</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#claimjobrun" class="tsd-kind-icon">claim<wbr>Job<wbr>Run</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#createjob" class="tsd-kind-icon">create<wbr>Job</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#findjobbyname" class="tsd-kind-icon">find<wbr>Job<wbr>ByName</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
-								<a href="sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#initmodel" class="tsd-kind-icon">init<wbr>Model</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#loadjobs" class="tsd-kind-icon">load<wbr>Jobs</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#loadjobs" class="tsd-kind-icon">load<wbr>Jobs</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#purgejobs" class="tsd-kind-icon">purge<wbr>Jobs</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-								<a href="sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a>
+								<a href="db_sequelize_adapter.sequelizeadapter.html#removejobbyname" class="tsd-kind-icon">remove<wbr>Job<wbr>ByName</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="simpleeventscheduler.html" class="tsd-kind-icon">Simple<wbr>Event<wbr>Scheduler</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/job.html" class="tsd-kind-icon">Job</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/joboptions.html" class="tsd-kind-icon">Job<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="../interfaces/scheduleroptions.html" class="tsd-kind-icon">Scheduler<wbr>Options</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-module">
+						<a href="../interfaces/db_sequelize_adapter.sequelizeadapteroptions.html" class="tsd-kind-icon">Sequelize<wbr>Adapter<wbr>Options</a>
 					</li>
 				</ul>
 			</nav>
@@ -390,18 +405,17 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 		</div>
 	</div>
