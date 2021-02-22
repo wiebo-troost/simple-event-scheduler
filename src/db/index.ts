@@ -12,6 +12,7 @@ export interface Job {
     lastRunTime?: number;
     startDate?: Date | number | null;
     endDate?: Date | number | null;
+    params?: string;
   }
 
   export abstract class DBAdapter {

@@ -15,6 +15,10 @@ export interface JobOptions {
     startDate?: Date;
     endDate?:Date;
     channel?:string;
+    /**
+     * Any specific parameters that will be emitted back with the event.
+     */
+    params?:string;
 }
 
 /**
@@ -82,6 +86,7 @@ class SimpleEventScheduler extends EventEmitter {
             name,
             channel: options.channel || this.schedulerOptions.defaultChannelName,
             active:true,
+            params: options.params,
             lastRunTime: (new Date()).getTime()
         };
         j.startDate = options.startDate || new Date();

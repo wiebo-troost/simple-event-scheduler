@@ -66,6 +66,9 @@ class SequelizeAdapter extends DBAdapter{
                   },
                   endDate: {
                     type: DataTypes.DATE,
+                  },
+                  params: {
+                    type: DataTypes.STRING
                   }
                 },
                 {

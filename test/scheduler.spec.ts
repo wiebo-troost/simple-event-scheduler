@@ -190,6 +190,37 @@ describe("Create the scheduler", () => {
         });
     });
 
+    it("should emit the params for the job", () => {
+      const now = new Date();
+      const schedDate = new Date(now.getTime() + 1000 * 3);
+      //4 seconds from now.
+
+      let events:any[] = [];
+      scheduler.on("jobs", (eventData: any) => {
+        events.push(eventData);
+      });
+
+      const param:any = { valueOne:"Val1", valueTwo:12}; 
+
+      return scheduler
+        .createOnetimeJob("onetime-emit", schedDate, {params:JSON.stringify(param)})
+        .then((job: Job) => {
+          scheduler.start();
+        })
+        .then(() => {
+          return delay(9000);
+        })
+        .then(() => {
+          scheduler.stop();
+          scheduler.removeAllListeners();
+          expect(events.length).to.be(1);
+          const ev:any = events[0];
+          const parm = JSON.parse(ev.params);
+          expect(parm.valueOne).to.equal("Val1");
+          expect(parm.valueTwo).to.equal(12);
+        });
+    });
+
     it("should emit events for a recurring job", () => {
 
       let events = [];

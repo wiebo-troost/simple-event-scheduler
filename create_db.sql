@@ -13,6 +13,7 @@ use agenda_test;
   `nextRunAt` datetime NULL,
   `intervalSeconds` int NULL,
   `lastRunTime`bigint NOT NULL,
+  `params` varchar(4096) NULL,
   `startDate` datetime NULL,
   `endDate` datetime NULL,
   PRIMARY KEY (id)
