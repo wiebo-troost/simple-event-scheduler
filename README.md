@@ -12,7 +12,7 @@ a job needs to be executed is much better. You already have a fully configured s
 you a long running job that consumes a large amount of resources, this scheduler offers the flexibility to run those jobs in a dedicated environment. So it's the best of both worlds! 
 
 # Getting Started
-Please refer to the [documentation](https://binaryops-wiebo.github.io/simple-event-scheduler/) for all the details.
+Please refer to the [documentation](https://binaryops-wiebo.github.io/simple-event-scheduler/classes/index.simpleeventscheduler.html) for all the details.
 Install the scheduler with `npm install simple-event-scheduler`.
 
 Be default the SequelizeAdapter expects to find a jobs table:

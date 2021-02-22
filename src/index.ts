@@ -338,4 +338,4 @@ class SimpleEventScheduler extends EventEmitter {
     }
 }
 
-export { SimpleEventScheduler, DBAdapter, Job };
+export { SimpleEventScheduler, SequelizeAdapter, DBAdapter, Job };

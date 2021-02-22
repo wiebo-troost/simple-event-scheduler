@@ -72,8 +72,25 @@
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h1>Getting Started</h1>
 				</a>
-				<p>Install the scheduler with <code>npm install simple-event-scheduler</code>.
-				Please refer to the <a href="https://binaryops-wiebo.github.io/simple-event-scheduler/">documentation</a> for all the details.</p>
+				<p>Please refer to the <a href="https://binaryops-wiebo.github.io/simple-event-scheduler/classes/index.simpleeventscheduler.html">documentation</a> for all the details.
+				Install the scheduler with <code>npm install simple-event-scheduler</code>.</p>
+				<p>Be default the SequelizeAdapter expects to find a jobs table:</p>
+				<pre><code><span style="color: #0070C1">CREATE</span><span style="color: #000000"> </span><span style="color: #0070C1">TABLE</span><span style="color: #000000"> </span><span style="color: #A31515">`job`</span><span style="color: #000000"> (</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`id`</span><span style="color: #000000"> </span><span style="color: #001080">int</span><span style="color: #000000"> </span><span style="color: #0070C1">NOT</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000"> </span><span style="color: #0070C1">AUTO_INCREMENT</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`name`</span><span style="color: #000000"> </span><span style="color: #795E26">varchar</span><span style="color: #000000">(</span><span style="color: #098658">255</span><span style="color: #000000">) </span><span style="color: #0070C1">NOT</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`channel`</span><span style="color: #000000"> </span><span style="color: #795E26">varchar</span><span style="color: #000000">(</span><span style="color: #098658">255</span><span style="color: #000000">) </span><span style="color: #0070C1">NOT</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`active`</span><span style="color: #000000"> </span><span style="color: #001080">int</span><span style="color: #000000"> </span><span style="color: #0070C1">NOT</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`cronexp`</span><span style="color: #000000"> </span><span style="color: #795E26">varchar</span><span style="color: #000000">(</span><span style="color: #098658">255</span><span style="color: #000000">) </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`nextRunAt`</span><span style="color: #000000"> </span><span style="color: #001080">datetime</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`intervalSeconds`</span><span style="color: #000000"> </span><span style="color: #001080">int</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`lastRunTime`</span><span style="color: #001080">bigint</span><span style="color: #000000"> </span><span style="color: #0070C1">NOT</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`params`</span><span style="color: #000000"> </span><span style="color: #795E26">varchar</span><span style="color: #000000">(</span><span style="color: #098658">4096</span><span style="color: #000000">) </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`startDate`</span><span style="color: #000000"> </span><span style="color: #001080">datetime</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #A31515">`endDate`</span><span style="color: #000000"> </span><span style="color: #001080">datetime</span><span style="color: #000000"> </span><span style="color: #0070C1">NULL</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0070C1">PRIMARY</span><span style="color: #000000"> </span><span style="color: #795E26">KEY</span><span style="color: #000000"> (</span><span style="color: #001080">id</span><span style="color: #000000">)</span>
+<span style="color: #000000">  );</span>
+</code></pre>
+				<p>Note that you can override the name of the table with the SeqeulizeAdapterOptions parameters of the constructor.</p>
 				<a href="#persistent-jobs" id="persistent-jobs" style="color: inherit; text-decoration: none;">
 					<h1>Persistent jobs</h1>
 				</a>
